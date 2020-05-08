@@ -37,7 +37,7 @@ console.log(response);
   
   <table className="table">
   <thead className="thead-dark">
-    <tr>
+    <tr key={index}>
       <th scope="col">County</th>
       <th scope="col">Location</th>
       <th scope="col">Date</th>

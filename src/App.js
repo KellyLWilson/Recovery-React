@@ -1,5 +1,6 @@
 import React from 'react';
 import Meeting from './meeting.js';
+import MeetingInfo from './meetinginfo.js';
 import Centers from './centers.js';
 import Resources from './resources.js';
 
@@ -28,7 +29,7 @@ export default function nav() {
             <Link to="/Home">Home</Link>
           </li>
           <li>
-            <Link to="/Meeting">Meeting Locations</Link>
+            <Link to="/MeetingInfo">Meeting Locations</Link>
           </li>
           <li>
             <Link to="/Resources">Helpful Resources</Link>
@@ -51,8 +52,8 @@ export default function nav() {
           <Route exact path="/Home">
             <Home />
           </Route>
-          <Route path="/Meeting">
-            <Meeting />
+          <Route path="/MeetingInfo">
+            <MeetingInfo />
           </Route>
           <Route path="/Resources">
             <Resources />

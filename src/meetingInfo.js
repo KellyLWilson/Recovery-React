@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import axios from 'axios';
 
-class MeetingInfo extends React.Component {
+class Meeting extends React.Component {
     constructor(props) {
         super(props) 
         this.state = {
@@ -37,7 +37,7 @@ console.log(response);
   
   <table className="table">
   <thead className="thead-dark">
-    <tr>
+    <tr key={index}>
       <th scope="col">County</th>
       <th scope="col">Location</th>
       <th scope="col">Date</th>
@@ -65,4 +65,4 @@ console.log(response);
 
 
     }
-export default MeetingInfo;
+export default Meeting;
