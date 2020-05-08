@@ -1,7 +1,6 @@
 import React from 'react';
-import Meeting from './meeting.js';
-import Centers from './centers.js';
-import Resources from './resources.js';
+import App from './App';
+
 
 import {
   BrowserRouter as Router,
@@ -24,17 +23,14 @@ export default function nav() {
     <Router>
       <div>
         <ul>
-          <li className="black">
-            <Link to="/Home">Home</Link>
+          <li>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/Meeting">Meeting Locations</Link>
+            <Link to="/about">About</Link>
           </li>
           <li>
-            <Link to="/Resources">Helpful Resources</Link>
-          </li>
-          <li>
-            <Link to="/centers">Recovery Center Information</Link>
+            <Link to="/dashboard">Dashboard</Link>
           </li>
         </ul>
 
@@ -48,20 +44,16 @@ export default function nav() {
           of them to render at a time
         */}
         <Switch>
-          <Route exact path="/Home">
+          <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/Meeting">
-            <Meeting />
+          <Route path="/about">
+            <About />
           </Route>
-          <Route path="/Resources">
-            <Resources />
-          </Route>
-          <Route path="/centers">
-            <Centers />
+          <Route path="/dashboard">
+            <Dashboard />
           </Route>
         </Switch>
-
       </div>
     </Router>
   );
@@ -72,18 +64,24 @@ export default function nav() {
 
 function Home() {
   return (
-    <div className="container-fluid">
-      <div className="jumbotron-fluid">
-      <div className="image-holder">
-    <h1 className="display-4" text='center'>Recovery Resource Finder</h1>
-    <img src="./images/hope.jpeg" alt="hope"></img>
+    <div>
+      <h2>Home</h2>
     </div>
-    </div>
-    </div>
-   
   );
 }
 
+function About() {
+  return (
+    <div>
+      <h2>About</h2>
+    </div>
+  );
+}
 
-
-
+function Dashboard() {
+  return (
+    <div>
+      <h2>Dashboard</h2>
+    </div>
+  );
+}
