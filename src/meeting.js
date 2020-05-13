@@ -1,36 +1,26 @@
-import React from 'react';
+import React, {useState, useEffect, useRef } from 'react';
 import './App.css';
 import axios from 'axios';
 
-class Meeting extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      meetings: [],
-    };
-  }
+export default function Meeting () {
+  const [meetings, setMeetings] = useState( [] );
+  const [isLoading, setIsLoading] = useState(true);
+  
 
-  componentDidMount() {
-    axios.get('http://127.0.0.1:8000/api/meetings')
-      .then(response => {
-        this.setState({
-          meetings: response.data.data
-        })
+  useEffect( () => {
 
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
+    const fetchData = async () => {
+      const result = await axios.get('http://127.0.0.1:8000/api/meetings');
+      setMeetings(result.data.data);
+      console.log(result.data.data);
+      setIsLoading(false);
+    }
 
-  }
+    fetchData();
+  }, []);
 
-  render() {
-
-
-
-    return (<div className="container-fluid">
-      {this.state.meetings.map((meetings, index) => (
+  return (<div className="container-fluid">
+      {meetings.map((meetings, index) => (
 
 
 
@@ -46,11 +36,10 @@ class Meeting extends React.Component {
             </tr>
           </thead>
           <tbody>
-
             <tr>
               <td>{meetings.county}</td>
               <td>{meetings.location}</td>
-              <td>{meetings.date}</td>
+              <td>{meetings.date}</td>  
               <td>{meetings.time}</td>
               <td>{meetings.type}</td>
             </tr>
@@ -64,5 +53,3 @@ class Meeting extends React.Component {
   }
 
 
-}
-export default Meeting;

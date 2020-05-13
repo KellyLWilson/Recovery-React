@@ -40,8 +40,8 @@ console.log(response);
     <tr>
       <th scope="col">County</th>
       <th scope="col">Name</th>
-      <th scope="col">Contact</th>
-      <th scope="col">Phone</th>
+      {/* <th scope="col">Contact</th>
+      <th scope="col">Phone</th> */}
     </tr>
     </thead>
   <tbody>
@@ -49,8 +49,8 @@ console.log(response);
     <tr>
       <td>{centers.county}</td>
       <td>{centers.name}</td>
-      <td>{centers.contact}</td>
-      <td>{centers.phone}</td>
+      {/* <td>{centers.contact}</td>
+      <td>{centers.phone}</td> */}
     </tr>
   </tbody>
 </table>

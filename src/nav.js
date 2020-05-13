@@ -1,6 +1,10 @@
 import React from 'react';
-import App from './App';
-
+import Meeting from './meeting.js';
+import MeetingInfo from './meetinginfo.js';
+import Centers from './centers.js';
+import Resources from './resources.js';
+import Search from './search.js';
+import Home from './home.js';
 
 import {
   BrowserRouter as Router,
@@ -18,70 +22,50 @@ import {
 // making sure things like the back button and bookmarks
 // work properly.
 
-export default function nav() {
+export default function Nav() {
   return (
     <Router>
       <div>
         <ul>
-          <li>
-            <Link to="/">Home</Link>
+          <li className="black">
+            <Link to="/Home">Home</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to="/MeetingInfo">Meeting Locations</Link>
           </li>
           <li>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/Resources">Helpful Resources</Link>
+          </li>
+          <li>
+            <Link to="/centers">Recovery Center Information</Link>
+          </li>
+          <li>
+            <Link to="/Search">Search for a Meeting in your County</Link>
           </li>
         </ul>
 
         <hr />
 
-        {/*
-          A <Switch> looks through all its children <Route>
-          elements and renders the first one whose path
-          matches the current URL. Use a <Switch> any time
-          you have multiple routes, but you want only one
-          of them to render at a time
-        */}
+
         <Switch>
-          <Route exact path="/">
+          {/* <Route exact path="/Home">
             <Home />
+          </Route> */}
+          <Route path="/MeetingInfo">
+            <MeetingInfo />
           </Route>
-          <Route path="/about">
-            <About />
+          <Route path="/Resources">
+            <Resources />
           </Route>
-          <Route path="/dashboard">
-            <Dashboard />
+          <Route path="/centers">
+            <Centers />
+          </Route>
+          <Route path="/Search">
+            <Search />
           </Route>
         </Switch>
+
       </div>
     </Router>
-  );
-}
-
-// You can think of these components as "pages"
-// in your app.
-
-function Home() {
-  return (
-    <div>
-      <h2>Home</h2>
-    </div>
-  );
-}
-
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-}
-
-function Dashboard() {
-  return (
-    <div>
-      <h2>Dashboard</h2>
-    </div>
   );
 }
