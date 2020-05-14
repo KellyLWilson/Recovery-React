@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useRef } from 'react';
 import './App.css';
-import axios from 'axios';
 import Meeting from './meeting.js';
 
 

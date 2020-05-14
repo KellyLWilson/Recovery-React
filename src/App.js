@@ -19,32 +19,10 @@ import {
 } from "react-router-dom";
 
 function App() {
-  //const history = UseHistory();
-  const [meetings, setMeetings] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  //const [url, setUrl] = useState(history.location.pathname.split('/meetings'));
   
-  useEffect( () => {
-
-    const fetchData = async () => {
-      const result = await axios.get('http://127.0.0.1:8000/api/meetings');
-      setMeetings(result.data.data);
-      console.log(result.data.data);
-      setIsLoading(false);
-    }
-
-    fetchData();
-  }, []);
-
-
-
-
   return (
 
     <>
-    
-    
-
     <Router>
     <div>
       <ul>
@@ -87,6 +65,9 @@ function App() {
       </Switch>
     </div>
   </Router>
+
+
+  
 
   </>
 );

@@ -11,10 +11,10 @@ class Resources extends React.Component {
     }  
 
     componentDidMount() {
-        axios.get('http://127.0.0.1:8000/api/resource')
+        axios.get('http://127.0.0.1:8000/api/resources')
             .then(response => {
                 this.setState({
-                    resources: response.data.data
+                    resources: response.data
                 })
 
 console.log(response);

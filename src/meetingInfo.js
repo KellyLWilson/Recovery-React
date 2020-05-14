@@ -1,10 +1,38 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
+import './App.css';
+import axios from 'axios';
 
-export default function MeetingInfo(props) {
-  
+class MeetingInfo extends React.Component {
+    constructor(props) {
+        super(props) 
+        this.state = {
+            meetings: [],
+        };
+    }  
+
+    componentDidMount() {
+        axios.get('http://127.0.0.1:8000/api/meetings')
+            .then(response => {
+                this.setState({
+                    meetings: response.data.data
+                })
+              
+console.log(response);
+            })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    
+    }
+
+    render() {
+
+
     return (
       <div className="container-fluid">
-  {props.meetings.map((meetings, index) => (
+      <h1>this is annoying</h1>
+      
+  {/* {this.state.meetings.map((meetings, index) => (
 
 
 
@@ -34,10 +62,11 @@ export default function MeetingInfo(props) {
       </tbody>
     </table>
 
-  ))}
+  ))} */}
 </div>
 );
-
-
-
+  //}
 }
+}
+export default MeetingInfo;
+
