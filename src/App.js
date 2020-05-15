@@ -4,9 +4,10 @@ import axios from 'axios';
 import Home from './home.js';
 import Meeting from './meeting.js';
 import MeetingInfo from './meetinginfo.js';
+import TypePage from './typepage.js';
+import CountyInfo from './countyinfo.js';
 import Centers from './centers.js';
 import Resources from './resources.js';
-import Search from './search.js';
 
 import {
   BrowserRouter as Router,
@@ -20,27 +21,28 @@ import {
 
 function App() {
   const [meetings, setMeetings] = useState([]);
-  
+
 
 
   useEffect(() => {
 
 
-      axios.get('http://127.0.0.1:8000/api/meetings')
-      .then(response=>setMeetings(response.data))
-      .catch(error=>console.log(error))
-      
+    axios.get('http://127.0.0.1:8000/api/meetings')
+      .then(response => setMeetings(response.data))
+      .catch(error => console.log(error))
 
-      
 
-    
 
-    
+
+
+
+
   }, []);
 
 
-const   [meetingPage, setMeetingPage] = useState(0)
-
+  const [meetingPage, setMeetingPage] = useState(0)
+  const [typePage, setTypePage] = useState("")
+  console.log(meetings, typePage)
   return (
 
     <>
@@ -59,10 +61,6 @@ const   [meetingPage, setMeetingPage] = useState(0)
             <li>
               <Link to="/centers">Recovery Center Information</Link>
             </li>
-            <li>
-              <Link to="/Search">Search for a Meeting in your County</Link>
-            </li>
-        
           </ul>
 
           <hr />
@@ -73,7 +71,7 @@ const   [meetingPage, setMeetingPage] = useState(0)
               <Home />
             </Route>
             <Route path="/Meeting">
-              <Meeting setMeetingPage={setMeetingPage} meetings={meetings}/>
+              <Meeting setMeetingPage={setMeetingPage} meetings={meetings} />
             </Route>
             <Route path="/Resources">
               <Resources />
@@ -81,19 +79,17 @@ const   [meetingPage, setMeetingPage] = useState(0)
             <Route path="/centers">
               <Centers />
             </Route>
-            <Route path="/Search">
-              <Search />
-            </Route>
             <Route path="/MeetingInfo">
-              <MeetingInfo meetingPage={meetingPage} meetings={meetings}/>
+              <MeetingInfo setTypePage={setTypePage} meetingPage={meetingPage} meetings={meetings} />
             </Route>
+            <Route path="/TypePage">
+              <TypePage typePage={typePage} meetings={meetings} />
+            </Route>
+            
+
           </Switch>
         </div>
       </Router>
-
-
-
-
     </>
   );
 }

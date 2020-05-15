@@ -67,3 +67,7 @@ html {
 .App-link {
   color: black;
 }
+
+.h5 {
+  text: red !important;
+}

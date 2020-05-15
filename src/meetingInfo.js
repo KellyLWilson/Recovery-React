@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from "react-router-dom";
 import './App.css';
 
 
@@ -11,6 +12,7 @@ export default function MeetingInfo(props) {
     <div className="container-fluid">
 
       <h2 className="text-center">Available Meetings At:   {specificMeeting ? specificMeeting.location.name : null}</h2>
+      <h5 className="text-center">Click Meeting Type to Only show Desired Type</h5>
       <table key='id' className="table">
         <thead className="thead-dark">
           <tr>
@@ -24,7 +26,7 @@ export default function MeetingInfo(props) {
             <tr>
               <td>{meeting.day}</td>
               <td>{meeting.time}</td>
-              <td>{meeting.type}</td>
+              <td><Link to="/TypePage" onClick={() => props.setTypePage(meeting.type)}>{meeting.type}</Link></td>
             </tr>
           ))}
         </tbody>
