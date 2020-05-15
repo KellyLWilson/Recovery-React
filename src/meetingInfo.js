@@ -1,72 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
-import axios from 'axios';
-
-class MeetingInfo extends React.Component {
-    constructor(props) {
-        super(props) 
-        this.state = {
-            meetings: [],
-        };
-    }  
-
-    componentDidMount() {
-        axios.get('http://127.0.0.1:8000/api/meetings')
-            .then(response => {
-                this.setState({
-                    meetings: response.data.data
-                })
-              
-console.log(response);
-            })
-                    .catch(function (error) {
-                        console.log(error);
-                    })
-                    
-    }
-
-    render() {
 
 
-    return (
-      <div className="container-fluid">
-      <h1>this is annoying</h1>
-      
-  {/* {this.state.meetings.map((meetings, index) => (
+export default function MeetingInfo(props) {
 
+  console.log(props)
+  console.log(props.meetingPage)
+  const specificMeeting = props.meetings.find(item => item.location_id === props.meetingPage)
+  return (
+    <div className="container-fluid">
 
+      <h2 className="text-center">Available Meetings At:   {specificMeeting ? specificMeeting.location.name : null}</h2>
+      <table key='id' className="table">
+        <thead className="thead-dark">
+          <tr>
+            <th scope="col">Day</th>
+            <th scope="col">Time</th>
+            <th scope="col">Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.meetings.filter(item => item.location_id === props.meetingPage).map((meeting, index) => (
+            <tr>
+              <td>{meeting.day}</td>
+              <td>{meeting.time}</td>
+              <td>{meeting.type}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
 
+  );
 
-    <table className="table">
-      <thead className="thead-dark">
-        <tr key={index}>
-          <th scope="col">County</th>
-          <th scope="col">Location</th>
-          <th scope="col">Date</th>
-          <th scope="col">Time</th>
-          <th scope="col">Type</th>
-        </tr>
-      </thead>
-      <tbody>
-
-
-
-
-        <tr>
-          <td>{meetings.county}</td>
-          <td>{meetings.location}</td>
-          <td>{meetings.date}</td>  
-          <td>{meetings.time}</td>
-          <td>{meetings.type}</td>
-        </tr>
-      </tbody>
-    </table>
-
-  ))} */}
-</div>
-);
-  //}
 }
-}
-export default MeetingInfo;
+
 
