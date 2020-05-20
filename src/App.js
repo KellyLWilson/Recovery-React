@@ -10,7 +10,8 @@ import Centers from './centers.js';
 import Resources from './resources.js';
 import Search from './search.js';
 import Login from './login.js';
-import Register from './register.js'
+import Register from './register.js';
+import Landing from './landing.js'
 
 import {
   BrowserRouter as Router,
@@ -66,7 +67,10 @@ function App() {
               <Link to="/centers">Recovery Center Information</Link>
             </li>
             <li>
-              <Link to="/Login">Register to Create an Account or Login to Your Account</Link>
+              <Link to="/Register">Create an Account</Link>
+            </li>
+            <li>
+              <Link to="/Login">Please Login to Your Account</Link>
             </li>
           </ul>
 
@@ -100,6 +104,9 @@ function App() {
             </Route>
             <Route path="/Register">
               <Register  meetings={meetings} />
+            </Route>
+            <Route path="/Landing">
+              <Landing  meetings={meetings} />
             </Route>
             
 

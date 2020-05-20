@@ -40,7 +40,7 @@ export default function Meeting(props) {
                
           
                   
-          <td><Link to="MeetingInfo" onClick={() => props.setMeetingPage(meeting.id)}>{meeting.mlocation}</Link></td>
+          <td><Link to="MeetingInfo" onClick={() => props.setMeetingPage(meeting.mlocation)}>{meeting.mlocation}</Link></td>
           {/* <td>{meeting.day}</td>
               <td>{meeting.time}</td>
               <td>{meeting.type}</td> */}
