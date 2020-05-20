@@ -5,6 +5,9 @@ import './App.css';
 
 export default function MeetingInfo(props) {
 
+
+  
+
   console.log(props)
   console.log(props.meetingPage)
   const specificMeeting = props.meetings.find(item => item.location_id === props.meetingPage)
@@ -22,9 +25,10 @@ export default function MeetingInfo(props) {
           </tr>
         </thead>
         <tbody>
-          {props.meetings.filter(item => item.location_id === props.meetingPage).map((meeting, index) => (
+          {props.meetings.filter(item => item.id === props.meetingPage).map((meeting, index) => (
             <tr>
-              <td>{meeting.day}</td>
+            
+              <td key={index}>{meeting.day}</td>
               <td>{meeting.time}</td>
               <td><Link to="/TypePage" onClick={() => props.setTypePage(meeting.type)}>{meeting.type}</Link></td>
             </tr>

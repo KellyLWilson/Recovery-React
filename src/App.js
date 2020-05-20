@@ -8,6 +8,9 @@ import TypePage from './typepage.js';
 import CountyInfo from './countyinfo.js';
 import Centers from './centers.js';
 import Resources from './resources.js';
+import Search from './search.js';
+import Login from './login.js';
+import Register from './register.js'
 
 import {
   BrowserRouter as Router,
@@ -42,6 +45,7 @@ function App() {
 
   const [meetingPage, setMeetingPage] = useState(0)
   const [typePage, setTypePage] = useState("")
+  const [countyPage, setCountyPage] = useState(0)
   console.log(meetings, typePage)
   return (
 
@@ -61,6 +65,9 @@ function App() {
             <li>
               <Link to="/centers">Recovery Center Information</Link>
             </li>
+            <li>
+              <Link to="/Login">Register to Create an Account or Login to Your Account</Link>
+            </li>
           </ul>
 
           <hr />
@@ -71,7 +78,7 @@ function App() {
               <Home />
             </Route>
             <Route path="/Meeting">
-              <Meeting setMeetingPage={setMeetingPage} meetings={meetings} />
+              <Meeting setMeetingPage={setMeetingPage} setCountyPage={setCountyPage} meetings={meetings} />
             </Route>
             <Route path="/Resources">
               <Resources />
@@ -84,6 +91,15 @@ function App() {
             </Route>
             <Route path="/TypePage">
               <TypePage typePage={typePage} meetings={meetings} />
+            </Route>
+            <Route path="/CountyInfo">
+              <CountyInfo countyPage={countyPage} meetings={meetings} />
+            </Route>
+            <Route path="/Login">
+              <Login  meetings={meetings} />
+            </Route>
+            <Route path="/Register">
+              <Register  meetings={meetings} />
             </Route>
             
 

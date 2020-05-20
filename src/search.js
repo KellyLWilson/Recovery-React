@@ -8,7 +8,7 @@ export default function Search() {
     const [filterDisplay, setFilterDisplay] = useState();
     
     
-
+            
 const handleChange = e => {
     let oldList = this.state.meetings.map(meetings => {
         return {location: meetings.location.toLowerCase(), date: meetings.date, time: meetings.time, type: meetings.type };
