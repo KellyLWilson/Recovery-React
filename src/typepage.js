@@ -18,13 +18,16 @@ export default function TypePage(props) {
                         <th scope="col">Location</th>
                         <th scope="col">Day</th>
                         <th scope="col">Time</th>
+                        <th scope="col">Type</th>
                     </tr>
                 </thead>
                 <tbody>
                     {props.meetings.filter(item => item.type === props.typePage).map((meeting, index) => (
                         <tr>
+                          
                             <td>{meeting.day}</td>
                             <td>{meeting.time}</td>
+                            <td>{meeting.type}</td>
                         </tr>
                     ))}
                 </tbody>

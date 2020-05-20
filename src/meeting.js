@@ -4,6 +4,8 @@ import './App.css';
 
 export default function Meeting(props) {
 
+  
+
   return (
 
     <div className="container-fluid">
@@ -22,30 +24,35 @@ export default function Meeting(props) {
         </thead>
 
         <tbody>
-          {props.meetings.map((meeting, index) => (
+          {props.meetings.map((meeting, index) => 
+            meeting && index === undefined ? (
+            <p>{props.error}</p>
+          ) : (
+            <React.Fragment key={index}>
             <tr>
 
-              {meeting.location.county.map((county, index) =>
+              
+              
 
                 <td>
-                  <Link to="MeetingInfo" onClick={() => props.setCountyPage(meeting.location.county.id)}>{county.name}</Link></td>
-
-
-              )}
-
-              <td><Link to="MeetingInfo" onClick={() => props.setMeetingPage(meeting.location.id)}>{meeting.location.name}</Link></td>
-              {/* <td>{meeting.day}</td>
+                  <Link to="CountyInfo" onClick={() => props.setCountyPage(meeting.county.id)}>{meeting.county.name}</Link></td>
+                  
+               
+          
+                  
+          <td><Link to="MeetingInfo" onClick={() => props.setMeetingPage(meeting.mlocation)}>{meeting.mlocation}</Link></td>
+          {/* <td>{meeting.day}</td>
               <td>{meeting.time}</td>
               <td>{meeting.type}</td> */}
             </tr>
-
-
+          
+</React.Fragment>
           ))}
         </tbody>
       </table>
     </div >
 
-  );
+  )
 
 }
 

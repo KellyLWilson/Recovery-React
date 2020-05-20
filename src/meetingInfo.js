@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from "react-router-dom";
+import { Button } from 'react-bootstrap';
 import './App.css';
 
 
 export default function MeetingInfo(props) {
+
+
+  
 
   console.log(props)
   console.log(props.meetingPage)
@@ -22,11 +26,13 @@ export default function MeetingInfo(props) {
           </tr>
         </thead>
         <tbody>
-          {props.meetings.filter(item => item.location_id === props.meetingPage).map((meeting, index) => (
+          {props.meetings.filter(item => item.mlocation === props.meetingPage).map((meeting, index) => (
             <tr>
-              <td>{meeting.day}</td>
+            
+              <td key={index}>{meeting.day}</td>
               <td>{meeting.time}</td>
               <td><Link to="/TypePage" onClick={() => props.setTypePage(meeting.type)}>{meeting.type}</Link></td>
+              <td><Button size="sm">Save Meeting</Button>{' '}{' '}</td>
             </tr>
           ))}
         </tbody>
