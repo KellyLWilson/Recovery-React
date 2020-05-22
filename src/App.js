@@ -27,20 +27,11 @@ import {
 function App() {
   const [meetings, setMeetings] = useState([]);
 
-
-
   useEffect(() => {
-
 
     axios.get('https://bootcamp-finalproject.uc.r.appspot.com/api/meetings')
       .then(response => setMeetings(response.data))
       .catch(error => console.log(error))
-
-
-
-
-
-
 
   }, []);
 
@@ -108,19 +99,19 @@ function App() {
               <CountyInfo countyPage={countyPage} meetings={meetings} />
             </Route>
             <Route path="/Login">
-              <Login  meetings={meetings} />
+              <Login meetings={meetings} />
             </Route>
             <Route path="/Register">
-              <Register  meetings={meetings} />
+              <Register meetings={meetings} />
             </Route>
             <Route path="/Landing">
-              <Landing  setLanding={setLanding} meetings={meetings} />
+              <Landing setLanding={setLanding} meetings={meetings} />
             </Route>
             <Route path="/LogOut">
-              <LogOut  meetings={meetings} />
+              <LogOut meetings={meetings} />
             </Route>
-            
-            
+
+
 
           </Switch>
         </div>
