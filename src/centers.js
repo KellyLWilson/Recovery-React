@@ -11,7 +11,7 @@ class Centers extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://127.0.0.1:8000/api/centers')
+    axios.get('https://bootcamp-finalproject.uc.r.appspot.com/api/centers')
       .then(response => {
         this.setState({
           centers: response.data

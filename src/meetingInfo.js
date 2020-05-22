@@ -1,12 +1,43 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from "react-router-dom";
+import { Link, Switch, useHistory } from "react-router-dom";
 import { Button } from 'react-bootstrap';
-import './App.css';
+import axios from 'axios';
 
 
 export default function MeetingInfo(props) {
 
+  const history = useHistory();
+  const auth = JSON.parse(localStorage.getItem('auth'));
 
+  const saveMeeting = async (meet) => {
+    const save = {
+      meeting_id: meet,
+      user_id: auth.user.id,
+      headers: {
+        'Authorization': 'Bearer ' + auth.token,
+        'Accept': 'application/json' 
+      }
+    };
+
+    //console.log(meet)
+    //console.log(save)
+      
+  await axios.post('https://bootcamp-finalproject.uc.r.appspot.com/api/user_meetings', save)
+        .then(response => {
+          window.localStorage.setItem("save", JSON.stringify(response.data));
+          //setRegInfo(response.data);
+          console.log(response.data);
+          //let storageData = JSON.stringify(response.data);
+          //localStorage.setItem('auth', storageData);
+          history.push('/Landing');
+          
+        })
+        .catch (error => {
+          console.log( error)
+        })
+  
+//console.log(storageData);
+  }
   
 
   console.log(props)
@@ -32,7 +63,7 @@ export default function MeetingInfo(props) {
               <td key={index}>{meeting.day}</td>
               <td>{meeting.time}</td>
               <td><Link to="/TypePage" onClick={() => props.setTypePage(meeting.type)}>{meeting.type}</Link></td>
-              <td><Button size="sm">Save Meeting</Button>{' '}{' '}</td>
+              <td><Button><Link to="/Landing" size="sm" onClick={() => saveMeeting(meeting.id)}>Save Meeting</Link></Button></td>
             </tr>
           ))}
         </tbody>
@@ -42,5 +73,3 @@ export default function MeetingInfo(props) {
   );
 
 }
-
-
