@@ -11,7 +11,8 @@ import Resources from './resources.js';
 import Search from './search.js';
 import Login from './login.js';
 import Register from './register.js';
-import Landing from './landing.js'
+import Landing from './landing.js';
+import LogOut from './logout.js'
 
 import {
   BrowserRouter as Router,
@@ -26,20 +27,11 @@ import {
 function App() {
   const [meetings, setMeetings] = useState([]);
 
-
-
   useEffect(() => {
 
-
-    axios.get('http://127.0.0.1:8000/api/meetings')
+    axios.get('https://bootcamp-finalproject.uc.r.appspot.com/api/meetings')
       .then(response => setMeetings(response.data))
       .catch(error => console.log(error))
-
-
-
-
-
-
 
   }, []);
 
@@ -47,6 +39,7 @@ function App() {
   const [meetingPage, setMeetingPage] = useState(0)
   const [typePage, setTypePage] = useState("")
   const [countyPage, setCountyPage] = useState(0)
+  const [setLanding, setLandingPage] = useState(0)
   console.log(meetings, typePage)
   return (
 
@@ -72,6 +65,12 @@ function App() {
             <li>
               <Link to="/Login">Please Login to Your Account</Link>
             </li>
+            <li>
+              <Link to="/LogOut">Logout</Link>
+            </li>
+            <li>
+              <Link to="/Landing">My Profile</Link>
+            </li>
           </ul>
 
           <hr />
@@ -91,7 +90,7 @@ function App() {
               <Centers />
             </Route>
             <Route path="/MeetingInfo">
-              <MeetingInfo setTypePage={setTypePage} meetingPage={meetingPage} meetings={meetings} />
+              <MeetingInfo setTypePage={setTypePage} setLandingPage={setLandingPage} meetingPage={meetingPage} meetings={meetings} />
             </Route>
             <Route path="/TypePage">
               <TypePage typePage={typePage} meetings={meetings} />
@@ -100,15 +99,19 @@ function App() {
               <CountyInfo countyPage={countyPage} meetings={meetings} />
             </Route>
             <Route path="/Login">
-              <Login  meetings={meetings} />
+              <Login meetings={meetings} />
             </Route>
             <Route path="/Register">
-              <Register  meetings={meetings} />
+              <Register meetings={meetings} />
             </Route>
             <Route path="/Landing">
-              <Landing  meetings={meetings} />
+              <Landing setLanding={setLanding} meetings={meetings} />
             </Route>
-            
+            <Route path="/LogOut">
+              <LogOut meetings={meetings} />
+            </Route>
+
+
 
           </Switch>
         </div>

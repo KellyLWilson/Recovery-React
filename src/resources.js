@@ -11,7 +11,7 @@ class Resources extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://127.0.0.1:8000/api/resources')
+    axios.get('https://bootcamp-finalproject.uc.r.appspot.com/api/resources')
       .then(response => {
         this.setState({
           resources: response.data
