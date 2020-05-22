@@ -21,7 +21,7 @@ export default function Landing(props) {
         axios.get('https://bootcamp-finalproject.uc.r.appspot.com/api/user_meetings')
             .then(response => setSaves(response.data))
             .catch(error => console.log(error))
-        //console.log(response);
+        console.log(response);
 
     }, []);
 
@@ -62,7 +62,6 @@ export default function Landing(props) {
                 </thead>
                 <tbody>
                     {stuff.map((meeting, index) => (
-
 
 
                         <tr>
