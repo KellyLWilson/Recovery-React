@@ -63,7 +63,7 @@ export default function MeetingInfo(props) {
               <td key={index}>{meeting.day}</td>
               <td>{meeting.time}</td>
               <td><Link to="/TypePage" onClick={() => props.setTypePage(meeting.type)}>{meeting.type}</Link></td>
-              <td><Button><Link to="/Landing" size="sm" onClick={() => saveMeeting(meeting.id)}>Save Meeting</Link></Button></td>
+              <td><Button><Link to="/Home" size="sm" onClick={() => saveMeeting(meeting.id)}>Save Meeting</Link></Button></td>
             </tr>
           ))}
         </tbody>
