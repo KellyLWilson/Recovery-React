@@ -1,5 +1,7 @@
+  
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import axios from 'axios';
 
 export default function Landing(props) {
@@ -7,6 +9,7 @@ export default function Landing(props) {
     const [url, setUrl] = useState('');
 
     var userInfo = JSON.parse(localStorage.getItem("auth"));
+    const auth = JSON.parse(localStorage.getItem('auth'));
     //var lsMeet = JSON.parse(localStorage.getItem("save"));
 
     //console.log(userInfo);
@@ -21,7 +24,8 @@ export default function Landing(props) {
         axios.get('https://bootcamp-finalproject.uc.r.appspot.com/api/user_meetings')
             .then(response => setSaves(response.data))
             .catch(error => console.log(error))
-        console.log(response);
+        //console.log(response);
+
 
     }, []);
 
@@ -46,6 +50,26 @@ export default function Landing(props) {
     //const getSaves = saves.meetings.find(item => item.meeting_id === props.setLanding);
 
 
+    const deleteMeeting = (meet) => {
+
+        const gather = {
+            meeting_id: meet,
+            user_id: auth.user.id,
+        }
+
+        console.log(meet);
+        console.log(auth.user.id);
+          
+       axios.post('https://bootcamp-finalproject.uc.r.appspot.com/api/deleteMeeting', gather)
+       .then(response => {
+        console.log(response.data);
+        
+        //history.push('/Landing');
+    })
+    .catch(error => {
+        console.log(error)
+    });
+}
     
     return (
         <div className="container-fluid">
@@ -69,6 +93,7 @@ export default function Landing(props) {
                             <td>{meeting.day}</td>
                             <td>{meeting.time}</td>
                             <td>{meeting.type}</td>
+                            <td><Button><Link to="/Home" size="sm" onClick={() => deleteMeeting(meeting.id)}>Remove Meeting</Link></Button></td>
                         </tr>
                     ))}
                 </tbody>
@@ -78,10 +103,3 @@ export default function Landing(props) {
     );
 
 }
-
-
-
-
-
-
-
